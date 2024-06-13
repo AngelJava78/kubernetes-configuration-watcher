@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+     run: demo-config-watcher
+  name: demo-config-watcher
+  annotations:
+    boot.spring.io/actuator: http://:8080/actuator
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+     run: demo-config-watcher
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-config-watcher
+spec:
+  selector:
+    matchLabels:
+      run: demo-config-watcher
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        run: demo-config-watcher
+    spec:
+      serviceAccountName: spring-cloud-kubernetes-configuration-watcher
+      containers:
+      - name: demo-config-watcher
+        image: angeljava/demo-config-watcher:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "default"
+        - name: TZ
+          value: "America/Mexico_City"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: demo-configmap
