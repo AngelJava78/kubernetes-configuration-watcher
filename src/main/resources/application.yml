@@ -1,0 +1,21 @@
+management:
+  endpoint:
+    env:
+      enabled: true
+      show-values: ALWAYS
+    refresh:
+      enabled: true
+    restart:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#username: ${username}
+#password: ${password}
+mysecrets:
+  username: defaultusername
+  password: defaultpassword
+mydata:
+  name: Sarah Johnson
+  email: Sarah.Johnson@example.com

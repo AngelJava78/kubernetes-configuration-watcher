@@ -36,6 +36,6 @@ spec:
           - name: logging.level.org.springframework.cloud.kubernetes
             value: "DEBUG"
           - name: SPRING_CLOUD_KUBERNETES_CONFIGURATION_WATCHER_REFRESHDELAY
-            value: "60000"
+            value: "120000"
           - name: TZ
             value: "America/Mexico_City"

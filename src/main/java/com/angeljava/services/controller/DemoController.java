@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.angeljava.services.config.MyDataProperties;
+import com.angeljava.services.event.EventCatcher;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +22,9 @@ public class DemoController {
 	@Autowired
 	private MyDataProperties myDataProperties;
 
+	@Autowired
+	private EventCatcher eventCatcher;
+
 	@GetMapping
 	public ResponseEntity<String> sayHello() {
 		String message = "Name: " + myDataProperties.getName() + ". Email: " + myDataProperties.getEmail();
@@ -28,4 +32,8 @@ public class DemoController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
+	@GetMapping("/times")
+	public ResponseEntity<Integer> times() {
+		return new ResponseEntity<>(eventCatcher.getTimes(), HttpStatus.OK);
+	}
 }

@@ -45,10 +45,25 @@ spec:
           value: "default"
         - name: TZ
           value: "America/Mexico_City"
+#        - name: MONGO_USERNAME
+#          valueFrom:
+#            secretKeyRef:
+#              name: db-secret
+#              key: username
+#        - name: MONGO_PASSWORD
+#          valueFrom:
+#            secretKeyRef:
+#              name: db-secret
+#              key: password  
         volumeMounts:
         - name: config-volume
           mountPath: /etc/config
+        - name: db-secret
+          mountPath: "/etc/secrets/db-secret"
       volumes:
         - name: config-volume
           configMap:
             name: demo-configmap
+        - name: db-secret
+          secret:
+            secretName: db-secret           

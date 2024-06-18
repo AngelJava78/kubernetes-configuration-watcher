@@ -21,7 +21,14 @@ data:
         web:
           exposure:
             include: '*'
-
+    spring:
+      cloud:
+        kubernetes:
+          reload:
+            enabled: true
+          secrets:
+            paths: /etc/secrets/db-secret
     mydata:
-      name: John Smith
-      email: johnsmith@example.com
+      name: William Clark
+      email: williamc@yahoo.com
+    
