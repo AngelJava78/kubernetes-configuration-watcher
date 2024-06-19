@@ -16,6 +16,16 @@ management:
 mysecrets:
   username: defaultusername
   password: defaultpassword
+secondsecret:
+  url: http://localhost:8080/api/books
+  token: aHR0cDovL2xvY2FsaG9zdDo4MDgwL2FwaS9ib29rcw==  
 mydata:
   name: Sarah Johnson
   email: Sarah.Johnson@example.com
+#spring:
+#  config:
+#    import: "configtree:/etc/secrets/db-secret/"  
+
+spring:
+  config:
+    location: "/etc/config/application.yml"

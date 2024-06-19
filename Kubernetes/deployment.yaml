@@ -23,7 +23,7 @@ spec:
   selector:
     matchLabels:
       run: demo-config-watcher
-  replicas: 1
+  replicas: 10
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -60,10 +60,15 @@ spec:
           mountPath: /etc/config
         - name: db-secret
           mountPath: "/etc/secrets/db-secret"
+        - name: second-secret
+          mountPath: "/etc/secrets/second-secret"          
       volumes:
         - name: config-volume
           configMap:
             name: demo-configmap
         - name: db-secret
           secret:
-            secretName: db-secret           
+            secretName: db-secret
+        - name: second-secret
+          secret:
+            secretName: second-secret              

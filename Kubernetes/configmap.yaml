@@ -27,8 +27,10 @@ data:
           reload:
             enabled: true
           secrets:
-            paths: /etc/secrets/db-secret
+            paths: /etc/secrets/db-secret,/etc/secrets/second-secret
+      config:
+        import: "configtree:/etc/secrets/db-secret/,configtree:/etc/secrets/second-secret/"             
     mydata:
-      name: William Clark
-      email: williamc@yahoo.com
+      name: David Brown
+      email: david.brown@gmail.com
     
