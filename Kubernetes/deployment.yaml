@@ -23,7 +23,7 @@ spec:
   selector:
     matchLabels:
       run: demo-config-watcher
-  replicas: 10
+  replicas: 8
   strategy:
     type: RollingUpdate
     rollingUpdate:

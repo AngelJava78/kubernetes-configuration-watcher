@@ -13,6 +13,7 @@ management:
         include: '*'
 #username: ${username}
 #password: ${password}
+age: 45
 mysecrets:
   username: defaultusername
   password: defaultpassword
